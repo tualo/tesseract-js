@@ -6,9 +6,9 @@ use Tualo\Office\Basic\IMiddleware;
 
 class Middleware implements IMiddleware{
     public static function register(){
-        App::use('tesseractjs',function(){
+        App::use('tesseractjx',function(){
             try{
-                App::javascript('tesseractjs', './tesseractjs/lib/opencv.js',[],-90000);
+                App::javascript('tesseractjx', './tesseractjs/lib/tesseract.min.js',[],-80000);
             }catch(\Exception $e){
                 App::set('maintanceMode','on');
                 App::addError($e->getMessage());

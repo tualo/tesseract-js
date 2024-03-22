@@ -5,10 +5,11 @@ use Tualo\Office\Basic\TualoApplication as App;
 use Tualo\Office\Basic\Route as BasicRoute;
 use Tualo\Office\Basic\IRoute;
 
+
 class JsLoader implements IRoute{
     public static function register(){
         BasicRoute::add('/tesseractjs/(?P<file>[\w.\/\-]+).js',function($matches){
-            App::contenttype('application/javascript');
+            //App::contenttype('application/javascript');
             if (file_exists(dirname(__DIR__,1).'/js/lazy/'.$matches['file'].'.js')){
                 App::etagFile( dirname(__DIR__,1).'/js/lazy/'.$matches['file'].'.js', true);
                 BasicRoute::$finished = true;
@@ -16,5 +17,13 @@ class JsLoader implements IRoute{
             }            
         },['get'],false);
 
+        BasicRoute::add('/tesseract.js/(?P<file>[\w.\/\-]+)',function($matches){
+            //App::contenttype('application/javascript');
+            if (file_exists(dirname(__DIR__,1).'/js/lazy/'.$matches['file'].'')){
+                App::etagFile( dirname(__DIR__,1).'/js/lazy/'.$matches['file'].'', true);
+                BasicRoute::$finished = true;
+                http_response_code(200);
+            }            
+        },['get'],false);
     }
 }
