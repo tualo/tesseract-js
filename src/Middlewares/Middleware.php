@@ -9,6 +9,7 @@ class Middleware implements IMiddleware{
         App::use('tesseractjx',function(){
             try{
                 App::javascript('tesseractjx', './tesseractjs/lib/tesseract.min.js',[],-80000);
+                App::javascript('tesseractjx-zbar', './tesseractjs/lib/index.js',[],-80001);
             }catch(\Exception $e){
                 App::set('maintanceMode','on');
                 App::addError($e->getMessage());
